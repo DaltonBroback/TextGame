@@ -14,9 +14,15 @@ class Combatant(object):
         print("")
         # print("__________________")
     def attack(self, target):
-        target.health -= (self.strength - target.defense)
+        damage = self.strength - target.defense
+        if damage < 0:
+            target.health -= damage
+            print(self.name + " rushes "+target.name+", fists swinging wildly and deals "+str(damage)+" damage.")
+            return target.health
+        else:
+            # target.health += 0
+            print(target.name+" takes no damage."
         # print(target.name+" took "+str(self.strength)+" damage")
-        return target.health
-    def die(self, description = " was killed!"):
-        if (self.health < 1):
-            print(self.name + description)
+    # def die(self, description = " was killed!"):
+    #     if (self.health < 1):
+    #         print(self.name + description)
